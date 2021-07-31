@@ -43,11 +43,19 @@ public class moto1 extends Actor
         Actor collided = getOneIntersectingObject(moto2.class);
         if (collided != null)
         {
-          getWorld().removeObject(collided);
-          getWorld().removeObject(this);
+          World myWorld = getWorld();
+          myWorld.removeObject(collided);
+          myWorld.removeObject(this);
+          GAMEOVER gameover = new GAMEOVER();
+          myWorld.addObject(gameover, myWorld.getWidth()/2, myWorld.getHeight()/2);
           Greenfoot.stop();
         }
     
     }
+    
+    public void aumenta_velocidad(){
+        speed++;
+    }
+    
     
 }

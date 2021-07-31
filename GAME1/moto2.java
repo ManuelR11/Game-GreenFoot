@@ -26,6 +26,8 @@ public class moto2 extends Actor
             MyWorld juego = (MyWorld) getWorld();
             juego.removeObject(this);
             juego.disminuir_num_rivales();
+            juego.aumentar_puntuacion(10);
+            juego.aumentar_adelantar();
         }
     } 
 }

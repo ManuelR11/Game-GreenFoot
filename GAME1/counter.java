@@ -8,12 +8,49 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class counter extends Actor
 {
-    /**
-     * Act - do whatever the counter wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void act() 
+    private int valor = 0;
+    private int tar = 0;
+    private String text;
+    private int stringLength;
+
+    public counter(){
+        this("");
+    }
+    public counter(String prefix)
     {
-        // Add your action code here.
-    }    
+        text = prefix;
+        stringLength = (text.length() + 2) * 16;
+
+        setImage(new GreenfootImage(stringLength, 24)); //imagen a partir de texto
+        GreenfootImage image = getImage();
+        Font font = image.getFont();
+        image.setFont(font.deriveFont(24.0F)); 
+        image.setColor(Color.WHITE);
+        
+        updateImage();
+    }
+    public void act() {
+        if(valor < tar) {
+            valor++;
+            updateImage();
+        }
+        else if(valor > tar) {
+            valor--;
+            updateImage();
+        }
+    }
+    public void add(int score){
+        tar += score;
+    }
+    public void subtract(int score){
+        tar -= score;
+    }
+    public int getValor(){
+        return valor;
+    }
+    private void updateImage(){
+        GreenfootImage image = getImage();
+        image.clear();
+        image.drawString(text + valor, 1, 18);
+    } 
 }
